@@ -38,7 +38,7 @@ cd direct-email
 
 ## 📸 Screenshots
 
-![screenshot-light]([./images/screenshot-light.png](https://github.com/Boda1607/Direct-mail/blob/9ffcadba58a0a4408bfc56484266c548016d638a/IMG_8760.png))
+![screenshot-light](IMG_8760.png)
 ![screenshot-dark](./images/screenshot-dark.png)
 
 ## 👨‍💻 Author

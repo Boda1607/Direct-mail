@@ -39,7 +39,7 @@ cd direct-email
 ## 📸 Screenshots
 
 ![screenshot-light](IMG_8760.png)
-![screenshot-dark](./images/screenshot-dark.png)
+![screenshot-dark](IMG_8758.png)
 
 ## 👨‍💻 Author
 

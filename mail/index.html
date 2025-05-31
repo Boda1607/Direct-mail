@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Direct Email</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#6100fe" />
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="images/1.png" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+
+
+
+  <style>
+    :root {
+      --main-color:  #6100fe;
+      --main-color2: #00f2fe;
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to right, var(--main-color), var(--main-color2));
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      transition: background 0.5s ease;
+    }
+
+    .theme-switcher {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+
+    .theme-button {
+      background: transparent;
+      border: none;
+      font-size: 24px;
+      color: white;
+      cursor: pointer;
+      padding: 5px;
+      transition: transform 0.2s ease;
+    }
+
+    .theme-button:hover {
+      transform: scale(1.2);
+    }
+
+    .theme-list {
+      display: none;
+      position: absolute;
+      right: 0;
+      margin-top: 10px;
+      background: white;
+      padding: 0.5rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      flex-wrap: wrap;
+      max-width: 200px;
+      gap: 6px;
+      z-index: 100;
+    }
+
+    .theme-list.show {
+      display: flex;
+    }
+
+    .theme-color {
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 2px solid #fff;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    }
+
+    .card {
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    color: white;
+    transition: background 0.5s ease;
+    }
+
+
+
+    .card h2 {
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    input[type="date"] {
+    padding: 0.5rem;
+    width: 100%;
+    font-size: 1rem;
+    border: 2px solid var(--main-color);
+    border-radius: 8px;
+    margin-bottom: 1rem;
+
+    /* New styles to match card background */
+    background: inherit; /* use same background as card */
+    color: white;
+    border-color: rgba(255, 255, 255, 0.3);
+    transition: border-color 0.3s ease;
+    }
+
+    input[type="date"]:focus {
+    outline: none;
+    border-color: white;
+    }
+
+
+    button {
+      padding: 0.7rem 1.2rem;
+      background: var(--main-color);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      transition: background 0.3s ease;
+    }
+
+
+
+    footer {
+    flex-shrink: 0; /* don’t shrink */
+    text-align: center;
+    color: white;
+    font-size: 1.2rem;
+    padding: 15px 0;
+    background: transparent;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    }
+
+    footer a {
+      color: white;
+      text-decoration: underline;
+      font-weight: bold;
+    }
+
+    .form-group {
+  margin-bottom: 1rem;
+  text-align: left;
+    }
+
+    label {
+    display: block;
+    margin-bottom: 5px;
+    color: white;
+    font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border: 2px solid rgba(255,255,255,0.2);
+    border-radius: 8px;
+    background: rgba(255,255,255,0.05);
+    color: white;
+    font-size: 1rem;
+    resize: none;
+    transition: border 0.3s ease;
+    }
+
+    input:focus,
+    textarea:focus {
+    outline: none;
+    border-color: white;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Theme Switcher -->
+  <div class="theme-switcher">
+    <button class="theme-button" onclick="toggleThemeMenu()">
+      <i class="fa-solid fa-palette"></i>
+    </button>
+    <div class="theme-list" id="themeList"></div>
+  </div>
+
+  <!-- Main Card -->
+<!-- Main Card -->
+    <div class="card">
+    <h2><i class="fas fa-envelope"></i>Direct Email</h2>
+    <form action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="5e69601a-c30b-4059-bf9c-c9cba95f97ec">
+
+        <div class="form-group">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" name="name" placeholder="Full Name" required>
+        </div>
+        <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="Email" required>
+        </div>
+        <div class="form-group">
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" name="phone" placeholder="Phone Number" required>
+        </div>
+        <div class="form-group">
+        <label for="subject">Subject</label>
+        <input type="text" id="subject" name="subject" placeholder="Subject" required>
+        </div>
+        <div class="form-group">
+        <label for="message">Your Message</label>
+        <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
+        </div>
+        <button type="submit">Send Message</button>
+    </form>
+    </div>
+
+
+  <script>
+    // Handle form reset after submit
+    document.addEventListener("DOMContentLoaded", function () {
+      const form = document.querySelector(".service-card form");
+
+      form.addEventListener("submit", function (event) {
+        setTimeout(() => {
+          form.reset();
+        }, 1000);
+      });
+
+      // Theme switching
+      const themeSelect = document.getElementById("themes");
+      themeSelect.addEventListener("change", function () {
+        document.documentElement.style.setProperty("--primary", this.value);
+      });
+    });
+  </script>
+
+  <!-- Footer -->
+  <footer>
+    Made with ❤️ by <a href="https://abdelrahmanz.netlify.app/" target="_blank">AbdElRahman</a>
+  </footer>
+
+  <script>
+    const themes = [
+    ['#4facfe', '#00f2fe'],
+    ['#ff9966', '#ff5e62'],
+    ['#4a00e0', '#8e2de2'],
+    ['#7F00FF', '#E100FF'],
+    ['#56CCF2', '#2F80ED'],
+    ['#43e97b', '#38f9d7'],
+    ['#f953c6', '#b91d73'],
+    ['#30cfd0', '#330867'],
+    ['#f7797d', '#FBD786'],
+    ['#00c3ff', '#ffff1c'],
+    ['#3a7bd5', '#3a6073'],
+    ['#FF512F', '#DD2476'],
+    ['#1D976C', '#93F9B9'],
+    ['#ff6a00', '#ee0979'],
+    ['#2193b0', '#6dd5ed'],
+    ['#cc2b5e', '#753a88'],
+
+    // 7 Dark color themes added:
+    ['#232526', '#1c1c1c'],
+    ['#0f2027', '#203a43'],
+    ['#1c1c1c', '#282828'],
+    ['#232526', '#414345'],
+    ['#000000', '#434343'],
+    ['#141e30', '#243b55'],
+    ['#000428', '#004e92']
+    ];
+
+    const themeList = document.getElementById('themeList');
+
+    themes.forEach(([c1, c2]) => {
+      const colorDiv = document.createElement('div');
+      colorDiv.className = 'theme-color';
+      colorDiv.style.background = `linear-gradient(to right, ${c1}, ${c2})`;
+      colorDiv.onclick = () => applyTheme(c1, c2);
+      themeList.appendChild(colorDiv);
+    });
+
+    function toggleThemeMenu() {
+      themeList.classList.toggle('show');
+    }
+
+    function applyTheme(color1, color2) {
+    document.documentElement.style.setProperty('--main-color', color1);
+    document.documentElement.style.setProperty('--main-color2', color2);
+    themeList.classList.remove('show');
+
+    const card = document.querySelector('.card');
+
+    // Darken the colors by 50% (adjust amount as you like)
+    const darkColor1 = darkenHexColor(color1, 0.5);
+    const darkColor2 = darkenHexColor(color2, 0.5);
+
+    card.style.background = `linear-gradient(135deg, ${darkColor1}, ${darkColor2})`;
+
+    // Also style the input background:
+    const input = card.querySelector('input[type="date"]');
+    input.style.background = `linear-gradient(135deg, ${darkColor1}, ${darkColor2})`;
+    input.style.color = 'white'; // For text visibility
+    input.style.border = '1px solid rgba(255,255,255,0.3)';
+
+    // Update the theme-color meta tag to match the main theme color (first gradient color)
+    updateThemeColorMeta(color1);
+    }
+
+    updateThemeColorMeta(getComputedStyle(document.documentElement).getPropertyValue('--main-color').trim());
+
+
+
+
+    function updateThemeColorMeta(color) {
+        let metaThemeColor = document.querySelector('meta[name="theme-color"]');
+        if (!metaThemeColor) {
+            metaThemeColor = document.createElement('meta');
+            metaThemeColor.setAttribute('name', 'theme-color');
+            document.head.appendChild(metaThemeColor);
+        }
+        metaThemeColor.setAttribute('content', color);
+        }
+
+
+
+
+    function hexToRgba(hex, alpha) {
+    let c;
+    if(/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)){
+        c = hex.substring(1).split('');
+        if(c.length === 3){
+        c= [c[0], c[0], c[1], c[1], c[2], c[2]];
+        }
+        c = '0x' + c.join('');
+        return 'rgba(' + [(c>>16) & 255, (c>>8) & 255, c & 255].join(',') + `,${alpha})`;
+    }
+    throw new Error('Bad Hex');
+    }
+
+
+    function darkenHexColor(hex, amount = 0.2) {
+    let c;
+    if(/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)){
+        c = hex.substring(1).split('');
+        if(c.length === 3){
+        c= [c[0], c[0], c[1], c[1], c[2], c[2]];
+        }
+        c = '0x' + c.join('');
+        let r = Math.floor(((c >> 16) & 255) * (1 - amount));
+        let g = Math.floor(((c >> 8) & 255) * (1 - amount));
+        let b = Math.floor((c & 255) * (1 - amount));
+        return `rgb(${r},${g},${b})`;
+    }
+    throw new Error('Bad Hex');
+    }
+
+
+
+
+
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js')
+            .then(reg => {
+            console.log('Service Worker registered:', reg.scope);
+            })
+            .catch(err => {
+            console.log('Service Worker registration failed:', err);
+            });
+        });
+    }
+
+
+
+
+
+
+
+  </script>
+</body>
+</html>

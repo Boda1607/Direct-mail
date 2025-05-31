@@ -1,0 +1,16 @@
+{
+  "name": "Direct Email",
+  "short_name": "Direct Email",
+  "description": "Life Time Calculator with cool theme switcher and fun facts.",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#6100fe",
+  "theme_color": "#6100fe",
+  "icons": [
+   {
+    "src": "1.png",
+    "sizes": "192x192",
+    "type": "image/png"
+   }
+ ]
+}

@@ -17,7 +17,7 @@
 Clone this repository:
 
 ```bash
-git clone https://github.com/your-username/direct-email.git
+git clone https://github.com/Boda1607/direct-email.git
 cd direct-email
 ```
 
